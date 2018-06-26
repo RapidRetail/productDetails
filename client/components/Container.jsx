@@ -3,6 +3,7 @@ import App from './App';
 
 const Container = () => (
   <div>
+    Hello World Container
     <App />
   </div>
 );

@@ -20,7 +20,6 @@ class App extends React.Component {
     if (!id) {
       id = 1;
     }
-    
     this.getProductDetails(id);
   }
 

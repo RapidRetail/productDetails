@@ -1,13 +1,23 @@
-# Lululemon - Product Details Module
+# RapidRetail - Product Details Module
 
 > A clone of Lululemon's product details module. 
+> Inherit legacy frontend and scale backend to production throughput
+
+## Contributors
+  - Kianna Quach (Frontend development)
+  - Grant Yang (Backend scaling and optimization)
+
 
 ## Related Projects
 
-  - https://github.com/lululemonades/productDetails
-  - https://github.com/lululemonades/reviews-component
-  - https://github.com/lululemonades/image-carousel
-  - https://github.com/lululemonades/you-may-also-like
+  - Services
+  - https://github.com/RapidRetail/productDetails
+  - https://github.com/RapidRetail/reviews-component
+  - https://github.com/RapidRetail/image-carousel
+  - https://github.com/RapidRetail/you-may-also-like
+
+  - Proxy
+  - https://github.com/RapidRetail/grants-proxy
 
 ## Table of Contents
 

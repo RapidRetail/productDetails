@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-const db = require('../databases/index.js');
+const db = require('../databases/postgres.js');
 
 const port = process.env.PORT || 3001;
 
@@ -19,8 +19,7 @@ app.listen(port, () => {
 
 app.get('/productDetails/:id', (req, res) => {
   // console.log('look here', req.params.id)
-
-  console.log('req.url', req.url);
+  console.log('GET request... req.url is', req.url);
   db.ProductDetail.find({ id: req.params.id })
     .then((data) => {
       // console.log('YOUR DATA', data);
