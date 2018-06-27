@@ -27,3 +27,5 @@ coverage
 build/
 dist/
 
+# Bundles
+public/product-details-module-bundle.js

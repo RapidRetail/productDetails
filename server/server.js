@@ -18,16 +18,17 @@ app.listen(port, () => {
 });
 
 app.get('/productDetails/:id', (req, res) => {
-  // console.log('look here', req.params.id)
-  console.log('GET request... req.url is', req.url);
-  db.ProductDetail.find({ id: req.params.id })
-    .then((data) => {
-      // console.log('YOUR DATA', data);
-      // const product = data.slice(0, 1);
-      res.send(data);
-    }).catch((err) => {
-      console.log('CANNOT RETRIEVE FROM DB', err);
-    });
+  db.query(`SELECT p.id, p.title, p.price, p.description, p.size, p.fabric, p.care, p.features, array_agg(colors.name) as color
+  FROM products as p 
+  JOIN products_colors as pc ON p.id = pc.product_id 
+  JOIN colors ON colors.id = pc.color_id 
+  WHERE p.id = ${req.params.id} GROUP BY 1,2,3,4,5,6,7,8;`, (err, data) => {
+    if (err) console.log('CANNOT RETRIEVE FROM DB', err);
+    else {
+      res.send([data.rows[0]]);
+      // done();
+    }
+  });
 });
 
 module.exports = app;

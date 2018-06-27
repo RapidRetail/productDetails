@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const Sizes = props => (
   <div>
-    <select className="sizes">
-      <option disabled selected>Select Size</option>
+    <select className="sizes" defaultValue="Select Size">
+      <option disabled>Select Size</option>
       {
         props.sizes.map(size => <option key={size}>{size} </option>)
       }

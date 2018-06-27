@@ -44,7 +44,11 @@ class Colors extends React.Component {
 }
 
 Colors.propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string),
+};
+
+Colors.defaultProps = {
+  colors: ['blue'],
 };
 
 export default Colors;
