@@ -1,0 +1,45 @@
+config:
+  target: "http://localhost:3001"
+  phases:
+    - duration: 60
+      arrivalRate: 50
+  processor: "./my-functions.js"
+scenarios:
+  - flow:
+    - function: "generateRandomNumber"
+    - get:
+        url: "/productDetails/{{ number }}"
+
+
+# config:
+#   target: "http://localhost:3001/productDetails"
+  # phases:
+  #   - duration: 10
+  #     arrivalRate: 5
+  #   - duration: 30
+  #     arrivalRate: 5
+  #     rampTo: 50
+  #   - duration: 60
+  #     arrivalRate: 50
+#   # payload:
+#   #   path: "keywords.csv"
+#   #   fields:
+#   #     - "keywords"
+# scenarios:
+#   - name: "Get details"
+#     flow:
+#       - get:
+#         url: "/2222221"
+#       # - post:
+#       #     url: "/search"
+#       #     body: "kw={{ keywords }}"
+#       #     capture:
+#       #       json: "$.results[0].id"
+#       #       as: "id"
+#       # - get:
+#       #     url: "/details/{{ id }}"
+#       # - think: 3
+#       # - post:
+#       #     url: "/cart"
+#       #     json:
+#       #       productId: "{{ id }}"
