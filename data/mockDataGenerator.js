@@ -27,11 +27,11 @@ const sizes = [2, 4, 6, 8, 10, 12, 14];
 const maxPrice = 250;
 const randomSizes = () => sizes.slice(0, 2 + Math.floor(Math.random() * sizes.length));
 const randomPrice = () => `$${Math.ceil(Math.random() * maxPrice)}`;
-const randomColorIndex = () => Math.floor(Math.random() * colors.length);
+const randomColorIndex = () => Math.floor(Math.random() * validColors.length);
 const colorArray = () => {
   const result = [];
   for (let k = 0; k < 4; k += 1) {
-    result.push(colors[randomColorIndex()]);
+    result.push(validColors[randomColorIndex()]);
   }
   return result;
 };
