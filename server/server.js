@@ -18,17 +18,31 @@ app.listen(port, () => {
 });
 
 app.get('/productDetails/:id', (req, res) => {
-  db.query(`SELECT p.id, p.title, p.price, p.description, p.size, p.fabric, p.care, p.features, array_agg(colors.name) as color
-  FROM products as p 
-  JOIN products_colors as pc ON p.id = pc.product_id 
-  JOIN colors ON colors.id = pc.color_id 
-  WHERE p.id = ${req.params.id} GROUP BY 1,2,3,4,5,6,7,8;`, (err, data) => {
-    if (err) console.log('CANNOT RETRIEVE FROM DB', err);
+  const productId = req.params.id;
+  db.getProductDetails(productId, (err, data) => {
+    if (err) res.send(err);
     else {
       res.send([data.rows[0]]);
       // done();
     }
   });
 });
+
+app.delete('/productDetails/:id', (req, res) => {
+  const productId = req.params.id;
+  db.deleteProductDetails(productId, (err) => {
+    if (err) res.send(err);
+    else res.send('delete success');
+  });
+});
+
+
+app.post('/productDetails', (req, res) => {
+  db.addProductDetails(req.body, (err, data) => {
+    if (err) res.send(err);
+    else res.send(data);
+  });
+});
+
 
 module.exports = app;
