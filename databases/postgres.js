@@ -11,12 +11,25 @@ client.connect()
   .catch(err => console.error('connection error', err.stack));
 
 const getProductDetails = (productId, callback) => {
-  const getProductsDetailsQuery = `
+  const getMatProductsDetailsQuery = `
   SELECT id, title, price, description, size, fabric, care, features, color
   FROM mat_product_details
   WHERE id = ${productId}`;
-  client.query(getProductsDetailsQuery, (err, data) => {
+  client.query(getMatProductsDetailsQuery, (err, data) => {
     if (err) callback(err, null);
+    else if (data.rows.length === 0) {
+      const getProductsDetailsQuery = `
+      SELECT p.id, p.title, p.price, p.description, p.size, p.fabric, p.care, p.features, array_agg(colors.name) as color
+      FROM products as p 
+      JOIN products_colors as pc ON p.id = pc.product_id 
+      JOIN colors ON colors.id = pc.color_id 
+      WHERE p.id = ${productId}
+      GROUP BY 1,2,3,4,5,6,7,8;`;
+      client.query(getProductsDetailsQuery, (err, data) => {
+        if (err) callback(err, null);
+        else callback(null, data);
+      });
+    }
     else callback(null, data);
   });
 };

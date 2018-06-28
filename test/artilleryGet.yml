@@ -9,16 +9,3 @@ scenarios:
     - function: "generateRandomNumber"
     - get:
         url: "/productDetails/{{ number }}"
-  # - name: "Create product"
-  #   flow:
-  #     - post:
-  #         url: "/productDetails"
-  #         json:
-  #           title: "Artillery Stuff"
-  #           price: "$999"
-  #           description: "This is a test description."
-  #           size: [2, 4, 6, 8]
-  #           fabric: "Leather"
-  #           care: "Wash it"
-  #           features: "Has pockets"
-  #           color: ["Red","Black","Gold","White"]
