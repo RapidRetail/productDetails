@@ -1,45 +1,24 @@
 config:
   target: "http://localhost:3001"
   phases:
-    - duration: 60
-      arrivalRate: 400
+    - duration: 30
+      arrivalRate: 425
   processor: "./artillery-functions.js"
 scenarios:
   - flow:
     - function: "generateRandomNumber"
     - get:
         url: "/productDetails/{{ number }}"
-
-
-# config:
-#   target: "http://localhost:3001/productDetails"
-  # phases:
-  #   - duration: 10
-  #     arrivalRate: 5
-  #   - duration: 30
-  #     arrivalRate: 5
-  #     rampTo: 50
-  #   - duration: 60
-  #     arrivalRate: 50
-#   # payload:
-#   #   path: "keywords.csv"
-#   #   fields:
-#   #     - "keywords"
-# scenarios:
-#   - name: "Get details"
-#     flow:
-#       - get:
-#         url: "/2222221"
-#       # - post:
-#       #     url: "/search"
-#       #     body: "kw={{ keywords }}"
-#       #     capture:
-#       #       json: "$.results[0].id"
-#       #       as: "id"
-#       # - get:
-#       #     url: "/details/{{ id }}"
-#       # - think: 3
-#       # - post:
-#       #     url: "/cart"
-#       #     json:
-#       #       productId: "{{ id }}"
+  # - name: "Create product"
+  #   flow:
+  #     - post:
+  #         url: "/productDetails"
+  #         json:
+  #           title: "Artillery Stuff"
+  #           price: "$999"
+  #           description: "This is a test description."
+  #           size: [2, 4, 6, 8]
+  #           fabric: "Leather"
+  #           care: "Wash it"
+  #           features: "Has pockets"
+  #           color: ["Red","Black","Gold","White"]
