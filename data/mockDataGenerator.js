@@ -96,7 +96,16 @@ const generateColors = () => {
   }
 };
 
-generateCouchData();
-generateProductColors();
-generateProductDetails();
-generateColors();
+const generateIDs = () => {
+  fs.appendFileSync('./test/artilleryIds.csv', 'id\n');
+  for (let i = 0; i < 50000; i += 1) {
+    const number = `${9000000 + Math.ceil(Math.random() * 1000000)}`;
+    fs.appendFileSync('./test/artilleryIds.csv', `${number}\n`);
+  }
+};
+
+generateIDs();
+// generateCouchData();
+// generateProductColors();
+// generateProductDetails();
+// generateColors();
