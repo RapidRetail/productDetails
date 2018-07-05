@@ -15,13 +15,11 @@ app.use('/product/:id', express.static('public'));
 app.use(cors());
 
 app.listen(port, () => {
-  console.log(`server running at: port: ${port}`);
+  console.log(`server running at port: ${port}`);
 });
 
 app.get('/productDetails/:id', (req, res) => {
   const productId = req.params.id;
-  console.log(`get request for ${productId}`);
-
   db.getProductDetails(productId, (err, data) => {
     if (err) res.send(err);
     else {

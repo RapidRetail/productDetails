@@ -25,7 +25,6 @@ class App extends React.Component {
   getProductDetails(id) {
     axios.get(`/productDetails/${id}`)
       .then((response) => {
-        console.log('productDetails response is:', response);
         this.setState({
           products: [...response.data],
         });
@@ -42,7 +41,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.products);
     return (
       <div className="product-details">
         {

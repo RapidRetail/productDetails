@@ -1,21 +1,7 @@
 /* eslint comma-dangle: ["error", "only-multiline"] */
 /* eslint no-shadow: ["error", { "allow": ["err","data"] }] */
 
-const { Client, Pool } = require('pg');
-
-// const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/rapidRetail';
-// const connectionString = process.env.DATABASE_URL || 'ec2-54-153-88-0.us-west-1.compute.amazonaws.com';
-
-// const db = new Client(connectionString);
-
-// const db = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'rapidRetail',
-//   password: '',
-//   port: 5432,
-//   max: 25,
-// });
+const { Pool } = require('pg');
 
 const db = new Pool({
   user: 'ec2-user',
@@ -53,38 +39,6 @@ const getProductDetails = (productId, callback) => {
     }
   });
 };
-
-// const db = new Client(connectionString);
-// db.connect()
-//   .then(() => console.log('connected'))
-//   .catch(err => console.error('connection error', err.stack));
-// const getProductDetails = (productId, callback) => {
-//   const getMatProductsDetailsQuery = `
-//   SELECT id, title, price, description, size, fabric, care, features, color
-//   FROM mat_product_details
-//   WHERE id = ${productId}`;
-//   db.query(getMatProductsDetailsQuery, (err, data) => {
-//     if (err) callback(err, null);
-//     else if (data.rows.length === 0) {
-//       const getProductsDetailsQuery = `
-//       SELECT p.id, p.title, p.price, p.description, p.size, p.fabric, p.care, p.features, array_agg(colors.name) as color
-//       FROM products as p 
-//       JOIN products_colors as pc ON p.id = pc.product_id 
-//       JOIN colors ON colors.id = pc.color_id 
-//       WHERE p.id = ${productId}
-//       GROUP BY 1,2,3,4,5,6,7,8;`;
-//       db.query(getProductsDetailsQuery, (err, data) => {
-//         if (err) callback(err, null);
-//         else {
-//           callback(null, data);
-//         }
-//       });
-//     }
-//     else {
-//       callback(null, data);
-//     }
-//   });
-// };
 
 const addProductDetails = (product, callback) => {
   const colorsArray = product.color;
