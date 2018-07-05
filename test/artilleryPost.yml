@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:3001"
+  phases:
+    - duration: 30
+      arrivalRate: 200
+scenarios:
+    - flow:
+      - post:
+          url: "/productDetails"
+          json:
+            title: "Artillery Stuff"
+            price: "$999"
+            description: "This is a test description."
+            size: [2, 4, 6, 8]
+            fabric: "Leather"
+            care: "Wash it"
+            features: "Has pockets"
+            color: ["Red","Black","Gold","White"]

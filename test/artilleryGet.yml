@@ -1,0 +1,33 @@
+# config:
+#   target: "http://localhost:3001"
+#   phases:
+#     - duration: 30
+#       arrivalRate: 125
+#   payload:
+#   # path is relative to the location of the test script
+#     path: "artilleryIds.csv"
+#     fields:
+#       - "id"
+# scenarios:
+#   - flow:
+#     - loop: 
+#       - get:
+#           url: "/productDetails/{{ id }}"
+#       count: 10
+
+
+config:
+  target: "http://ec2-52-53-157-142.us-west-1.compute.amazonaws.com"
+  phases:
+    - duration: 1
+      arrivalRate: 5
+  processor: "./artillery-functions.js"
+scenarios:
+  - flow:
+    - function: "generateRandomNumber"
+    - get:
+        url: "/{{ number }}"
+
+
+
+        

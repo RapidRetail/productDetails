@@ -1,3 +1,4 @@
+const nr = require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -10,11 +11,11 @@ const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
-app.use('/:id', express.static('public'));
+app.use('/product/:id', express.static('public'));
 app.use(cors());
 
 app.listen(port, () => {
-  console.log(`server running at: http://localhost:${port}`);
+  console.log(`server running at port: ${port}`);
 });
 
 app.get('/productDetails/:id', (req, res) => {
