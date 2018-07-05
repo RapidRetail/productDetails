@@ -3,13 +3,25 @@
 
 const { Client, Pool } = require('pg');
 
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/rapidRetail';
+// const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/rapidRetail';
+// const connectionString = process.env.DATABASE_URL || 'ec2-54-153-88-0.us-west-1.compute.amazonaws.com';
+
+// const db = new Client(connectionString);
+
+// const db = new Pool({
+//   user: 'postgres',
+//   host: 'localhost',
+//   database: 'rapidRetail',
+//   password: '',
+//   port: 5432,
+//   max: 25,
+// });
 
 const db = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'rapidRetail',
-  password: '',
+  user: 'ec2-user',
+  host: process.env.DBIP,
+  database: 'ec2-user',
+  password: process.env.DBPASS,
   port: 5432,
   max: 25,
 });
@@ -130,29 +142,3 @@ const addProductDetails = (product, callback) => {
 
 module.exports = { getProductDetails, addProductDetails };
 
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'rapidRetail',
-//   password: '',
-//   port: 5432,
-//   max: 25, 
-//   idleTimeoutMillis: 2000
-// });
-// user: settings.database.username,
-// password: settings.database.password,
-// host: settings.database.readServer,
-// database: settings.database.database,
-// max: 25, 
-// idleTimeoutMillis: 1000
-
-// pool.query('SELECT * FROM products WHERE id = 9888888;', (err, res) => {
-//   console.log(err, res);
-//   console.log('select nowww');
-//   pool.end();
-// });
-
-// db.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
-//   console.log(err ? err.stack : res.rows[0].message); // Hello World!
-//   db.end();
-// });

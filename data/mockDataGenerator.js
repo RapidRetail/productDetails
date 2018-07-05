@@ -104,8 +104,8 @@ const generateIDs = () => {
   }
 };
 
-generateIDs();
+// generateIDs();
 // generateCouchData();
-// generateProductColors();
-// generateProductDetails();
-// generateColors();
+generateProductColors();
+generateProductDetails();
+generateColors();

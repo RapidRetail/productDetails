@@ -17,16 +17,16 @@
 
 
 config:
-  target: "http://localhost:3001"
+  target: "http://ec2-52-53-157-142.us-west-1.compute.amazonaws.com"
   phases:
-    - duration: 30
-      arrivalRate: 550
+    - duration: 1
+      arrivalRate: 5
   processor: "./artillery-functions.js"
 scenarios:
   - flow:
     - function: "generateRandomNumber"
     - get:
-        url: "/productDetails/{{ number }}"
+        url: "/{{ number }}"
 
 
 
